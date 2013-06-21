@@ -14,7 +14,7 @@ class Client
   end
 
   def to_s
-    return "#{@name} is a #{@age} year old #{@gender}, with $#{@cash_balance} not already in a portfolio."
+    return "#{@name}, a #{@age} year old #{@gender}, with $#{@cash_balance} of investable cash assets."
   end
 end
 
@@ -24,50 +24,94 @@ attr_accessor :investor, :strategy, :cash, :stocks
     @investor = investor
     @strategy = strategy
     @cash = cash
-    @stocks = {}
+    @stocks = []
   end
 
   def to_s
-    return "#{@investor} owns a a #{@strategy}-focused portfolio with $#{@cash} balance"
+    return "#{@investor} owns a a #{@strategy}-focused portfolio with a $#{@cash} balance"
   end
 end
 
-class Stocks #INCOMPLETE
+class Stock
   attr_reader :name
-  attr_accessor :price
+  attr_accessor :price, :quantity
+  def initialize(name, quantity)
+    @name = name
+    @price = YahooFinance::get_quotes(YahooFinance::StandardQuote, @name)[@name].lastTrade
+    @quantity = quantity
+  end
 
-  def Stocks.get(ticker)
-    #insert functionality from yahoofinance
+  def get_price
+    @price = YahooFinance::get_quotes(YahooFinance::StandardQuote, @name)[@name].lastTrade
+    return @price
+  end
+
+  def to_s
+    return "#{@quantity} shares of #{@name}, realtime-priced at $#{@price}"
   end
 end
 
-
-#Don's info
+##Existing clients
 don = Client.new("Don",40,"male",50000)
-don.portfolio_1[:portfolio_1] = Portfolio.new("Don", "Money Laundering", 10000)
-don.portfolio_2[:portfolio_2] = Portfolio.new("Don", "Wealth Preservation", 5000)
-don.portfolio_1[:portfolio_1].stocks << Stocks.new###INCOMPLETE###
-don.portfolio_1[:portfolio_2].stocks << Stocks.new###INCOMPLETE###
-
-#Betty's info
 betty = Client.new("Betty",40,"female",40000)
-betty.portfolio_1[:portfolio_1] = Portfolio.new("Betty", "Diversified", 5000)
-betty.portfolio_2[:portfolio_2] = Portfolio.new("Betty", "Secret", 5000)
-betty.portfolio_1[:portfolio_1].stocks << Stocks.new###INCOMPLETE###
-betty.portfolio_1[:portfolio_2].stocks << Stocks.new###INCOMPLETE###
 
-#Betty's info
+#Existing Portfolios
+don.portfolio[:portfolio_1] = Portfolio.new("Don", "Small-cap ad agency", 10000)
+don.portfolio[:portfolio_2] = Portfolio.new("Don", "Diversified industrials", 5000)
+betty.portfolio[:portfolio_1] = Portfolio.new("Betty", "Small-cap", 5000)
+betty.portfolio[:portfolio_2] = Portfolio.new("Betty", "Large-cap", 5000)
+
+
+#Stocks owned (NOT on a per-client thing - this is just all the stocks all the people own)
+don.portfolio[:portfolio_1].stocks << Stock.new('AAPL', 5)
+#don.portfolio[:portfolio_2].stocks << Stocks.new###INCOMPLETE###
+#betty.portfolio[:portfolio_1].stocks << Stocks.new###INCOMPLETE###
+#betty.portfolio[:portfolio_2].stocks << Stocks.new###INCOMPLETE###
+#sally.portfolio[:portfolio_1].stocks << Stocks.new###INCOMPLETE###
+
+#STORY BELOW
+puts "$$$ Welcome to Ponzi Financial, where the money flows freely! $$$"
+puts ""
+puts "As a prospective client, you may be wondering exactly whom we aim to serve."
+puts "Our existing clients include:"
+puts ""
+puts don
+puts betty
+puts ""
+puts "Here at Ponzi Financial, ethics are a secondary concern."
+puts "To that end, I am more than happy to disclose further information about our other clients:"
+puts ""
+puts don.portfolio[:portfolio_1]
+puts betty.portfolio[:portfolio_1]
+puts ""
+puts "I can see that you're quite enthused. Would you like to open an account?"
+puts "Great, I'll get the paperwork"
+puts ""
+
+#Adds new client Sally
 sally = Client.new("Sally",15,"female",5000)
-sally.portfolio_1[:portfolio_1] = Portfolio.new("Sally", "College", 5000)
-sally.portfolio_1[:portfolio_1].stocks << Stocks.new###INCOMPLETE###
+sally.portfolio[:portfolio_1] = Portfolio.new("Sally", "Diversified", 5000)
 
 
+#RETURNS TO STORY
+puts sally
+puts ""
+
+#NEED TO FLESH OUT REST OF STORY BELOW. BELOW LINE PULLS STOCK PRICE CORRECTLY!
+don.portfolio[:portfolio_1].stocks.each {|stocks| puts stocks}
+
+
+#don.portfolio_1[portfolio_1].stocks.each {|stocks| puts stocks}
+#puts don.portfolio_1[:unit_b]
+#don.portfolio_1[:unit_b].renters.each {|renter| puts renter}
 
 ###THINGS TO BUILD OUT###
-#Ability to pull in stock information from yahoo finance gem (already installed)
 #Subtract cash from user's portfolio balance
 #Ability to sell stock
-#LIst clients and their portfolio amounts
 #List all stocks in a portfolio
-#List all clients
+#Any others?
+
+#Ability to pull in stock information from yahoo finance gem (already installed) DONE
+#LIst clients and their portfolio amounts DONE
+#List all clients DONE
 
