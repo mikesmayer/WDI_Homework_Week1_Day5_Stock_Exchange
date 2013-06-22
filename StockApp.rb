@@ -1,7 +1,9 @@
-require_relative 'classes/client'
-require_relative 'classes/portfolio'
-require_relative 'classes/trade'
-require_relative 'classes/stock'
+require 'pry'
+
+require_relative 'classes/clients'
+require_relative 'classes/portfolios'
+require_relative 'classes/trades'
+require_relative 'classes/stocks'
 
 puts "Welcome to WDI Stock Trading Terminal"
 
@@ -21,6 +23,12 @@ if menu_selection == 1
   client_menu_selection = gets.chomp.to_i
 
   if client_menu_selection == 1
+
+    puts "LIST OF CLIENT NAMES"
+
+    client_name = gets.chomp.to_s
+
+    [is CLIENT NAME valid]
 
     puts "What is the name of your portfolio?"
 
@@ -101,3 +109,4 @@ else
   puts "Thanks for using WDI Stock Trading Terminal. Please come again!"
 
 end
+
