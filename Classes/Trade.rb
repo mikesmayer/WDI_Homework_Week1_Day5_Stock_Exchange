@@ -1,15 +1,13 @@
-class Trades
+class Trade
 
   attr_accessor :stock_symb, :num_of_shares, :cost_per_share, :portfolio_name
 
   def initialize
     @stock_symb = []
     @num_of_shares = []
+    @cost_per_share = #From Yahoo
     @portfolio_name = []
-    @buy_sell = []
-  end
-
-
+    @buy_sell = [] #this variable is not defined above
   end
 
   def buy(stock_symb, num_of_shares, portfolio_name)
@@ -34,22 +32,23 @@ class Trades
       portfolios[portfolio_name].add_stock(stock, num_of_shares)
     end
   end
-
-  def sell_stock(portfolio_name, stock_symb, num_of_shares)
-    if portfolios[portfolio_name].hasStock?(stock_symb)
-      if num_of_shares <= portfolios[portfolio_name].stocks[stock_symb].num_of_shares
-        portfolios[portfolio_name].stocks[stock_symb].num_of_shares -= num_of_shares
-        income = 0
-        stocks.each do |stock|
-          income += stock.get_price * num_of_shares
-        end
-        @balance += income
-      else
-        puts "The client does not have enough stock to sell."
-      end
-    else
-      puts "The client doesn't own any of that stock."
-    end
-  end
-
 end
+## commented the below out for now so that the program runs. i don't think if statements can be nested, but not sure
+
+  # def sell_stock(portfolio_name, stock_symb, num_of_shares)
+  #   if portfolios[portfolio_name].hasStock?(stock_symb)
+  #     if num_of_shares <= portfolios[portfolio_name].stocks[stock_symb].num_of_shares
+  #       portfolios[portfolio_name].stocks[stock_symb].num_of_shares -= num_of_shares
+  #       income = 0
+  #       stocks.each do |stock|
+  #         income += stock.get_price * num_of_shares
+  #       end
+  #       @balance += income
+  #     else
+  #       puts "The client does not have enough stock to sell."
+  #     end
+  #   else
+  #     puts "The client doesn't own any of that stock."
+  #   end
+  # end
+

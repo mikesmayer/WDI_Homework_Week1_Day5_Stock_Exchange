@@ -1,43 +1,43 @@
 require 'yahoofinance'
 
-class Stocks
+class Stock
 
-  attr_reader :name
+  attr_reader :ticker
   attr_accessor :total_price, :num_of_shares
 
-  def initialize(name, num_of_shares)
-    @name = name
+  def initialize(ticker, num_of_shares)
+    @ticker = ticker
     @num_of_shares = num_of_shares
-    @total_price = ( YahooFinance::get_quotes(YahooFinance::StandardQuote, @name)[@name].lastTrade ) * num_of_shares
+    @total_price = ( YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade ) * num_of_shares
   end
 
   def get_price
-    @total_price = ( YahooFinance::get_quotes(YahooFinance::StandardQuote, @name)[@name].lastTrade ) * num_of_shares
+    @total_price = ( YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade ) * num_of_shares
     return @total_price
   end
 
   def get_share_price
-    return YahooFinance::get_quotes(YahooFinance::StandardQuote, @name)[@name].lastTrade
+    return YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade
   end
 
 end
 
 # class Stock
-#   attr_reader :name
+#   attr_reader :ticker
 #   attr_accessor :price, :quantity
-#   def initialize(name, quantity)
-#     @name = name
-#     @price = YahooFinance::get_quotes(YahooFinance::StandardQuote, @name)[@name].lastTrade
+#   def initialize(ticker, quantity)
+#     @ticker = ticker
+#     @price = YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade
 #     @quantity = quantity
 #   end
 
 #   def get_price
-#     @price = YahooFinance::get_quotes(YahooFinance::StandardQuote, @name)[@name].lastTrade
+#     @price = YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade
 #     return @price
 #   end
 
 #   def to_s
-#     return "#{@quantity} shares of #{@name}, realtime-priced at $#{@price}"
+#     return "#{@quantity} shares of #{@ticker}, realtime-priced at $#{@price}"
 #   end
 # end
 
