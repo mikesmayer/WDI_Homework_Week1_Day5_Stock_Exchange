@@ -15,10 +15,10 @@ class Stock_Ledger #Acts as a "shelter" for the clients; could be replaced by th
 end
 
 class Client
-  attr_accessor :name, :balance, :portfolios, :portfolios_total_value
+  attr_accessor :client_name, :balance, :portfolios, :portfolios_total_value
 
   def initialize(name, balance, portfolios) ## Don't understand the last variable
-    @name = name
+    @client_name = client_name
     @balance = balance
     @portfolios = {}
     # @portfolios_total_value = update_total_portfolios_value ##??
@@ -32,7 +32,7 @@ class Client
   # end
 
   def to_s
-      "#{@name} had an uninvested cash balance of #{@balance} dollars and has #{@portfolios.count} investment portfolios."
+      "#{@client_name} had an uninvested cash balance of #{@balance} dollars and has #{@portfolios.count} investment portfolios."
   end
 end
 
