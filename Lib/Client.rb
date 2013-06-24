@@ -19,7 +19,7 @@ end
 class Client
   attr_accessor :client_name, :balance, :portfolios, :portfolios_total_value
 
-  def initialize(name, balance, portfolios) ## Don't understand the last variable
+  def initialize(name, balance) ## Don't understand the last variable
     @client_name = client_name
     @balance = balance
     @portfolios = {}

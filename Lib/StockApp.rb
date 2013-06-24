@@ -1,9 +1,9 @@
 require 'pry'
 
-require_relative 'client'
-require_relative 'portfolio'
-require_relative 'trades'
-require_relative 'stock_price'
+require_relative 'classes/clients'
+require_relative 'classes/portfolios'
+require_relative 'classes/trades'
+require_relative 'classes/stocks'
 
 puts "Welcome to WDI Stock Trading Terminal"
 
