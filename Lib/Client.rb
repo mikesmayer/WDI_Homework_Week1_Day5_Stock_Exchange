@@ -1,18 +1,18 @@
 ## creates client class and two methods: add_client and list_clients
 
 class Stock_Ledger #Acts as a "shelter" for the clients; could be replaced by the ability to list clients separately
-  attr_accessor :client_list
+  attr_accessor :client_roster
 
   def initialize()
-    @client_list = []
+    @client_roster = []
   end
 
   def add_client(client)
-    client_list << client
+    client_roster << client
   end
 
   def list_clients
-    @client_list.each {|client| puts client}
+    @client_roster.each {|client| puts client}
   end
 end
 
