@@ -12,16 +12,26 @@ puts `clear`
 
 ponzi_scheme = Stock_Ledger.new ##Creates "shelter" for clients to go into
 
-ponzi_scheme.add_client Client.new("Bob", 50000)
-ponzi_scheme.add_client Client.new("Mary", 45000)
-ponzi_scheme.add_client Client.new("Michael", 40000)
+#Initial clients
+bob = Client.new("Bob", 50000)
+mary = Client.new("Mary", 45000)
 
+#Adding initial clients to ponzi_scheme client "shelter"
+ponzi_scheme.add_client bob
+ponzi_scheme.add_client mary
 
-don = Client.new("Don", 45000) #To be added to client_list below
+#Initial clients portfolios
+bob.portfolios[:portfolio_1] = Portfolio.new("Bob's Industrial Portfolio", 10000)
+bob.portfolios[:portfolio_1].stocks << Stock.new('BA',4)
+bob.portfolios[:portfolio_1].stocks << Stock.new('FDX',15)
+bob.portfolios[:portfolio_2] = Portfolio.new("Bob's Energy Stocks", 10000)
+bob.portfolios[:portfolio_2].stocks << Stock.new('XOM',7)
 
-Bob.portfolios[:portfolio_1] = Portfolio.new("Bob", 10000)
-Bob.portfolios[:portfolio_1].stocks << Stock.new('AAPL',5)
-Bob.portfolios[:portfolio_1].stocks << Stock.new('IBM',5)
+mary.portfolios[:portfolio_1] = Portfolio.new("Mary's Financial Services Portfolio", 10000)
+mary.portfolios[:portfolio_1].stocks << Stock.new('UBS',4)
+mary.portfolios[:portfolio_1].stocks << Stock.new('GS',4)
+mary.portfolios[:portfolio_1].stocks << Stock.new('MS',4)
+mary.portfolios[:portfolio_1].stocks << Stock.new('WF',4)
 
 
 #Begin story
@@ -33,7 +43,10 @@ puts ""
 ponzi_scheme.list_clients
 puts "\nAre you interested in becoming a customer?"
 puts "\nGreat, we will add your information to our client list"
+
+don = Client.new("Don", 45000) #Don's initial information
 ponzi_scheme.add_client don
+
 puts "\nHere is the updated list of clients:"
 ponzi_scheme.list_clients
 
