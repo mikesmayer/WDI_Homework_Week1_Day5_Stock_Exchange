@@ -11,7 +11,7 @@ class Stock
     @total_price = ( YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade ) * num_of_shares
   end
 
-  def get_price
+  def get_block_price
     @total_price = ( YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade ) * num_of_shares
     return @total_price
   end
@@ -26,32 +26,3 @@ class Stock
 
 
 end
-
-# class Stock
-#   attr_reader :ticker
-#   attr_accessor :price, :quantity
-#   def initialize(ticker, quantity)
-#     @ticker = ticker
-#     @price = YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade
-#     @quantity = quantity
-#   end
-
-#   def get_price
-#     @price = YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade
-#     return @price
-#   end
-
-#   def to_s
-#     return "#{@quantity} shares of #{@ticker}, realtime-priced at $#{@price}"
-#   end
-# end
-
-# def stock
-# end
-
-# def stock_result
-#   stock = params[:stock].upcase
-#   @stock = YahooFinance::get_quotes(YahooFinance::StandardQuote, "#{stock}")["#{stock}"].lastTrade
-#   end
-
-# end

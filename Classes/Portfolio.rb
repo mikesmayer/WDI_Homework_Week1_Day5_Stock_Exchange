@@ -1,8 +1,8 @@
 class Portfolio
-attr_accessor :client, :balance , :stocks #, :position_in_shares, :position_in_value
+  attr_accessor :client, :balance , :stocks #, :position_in_shares, :position_in_value
   def initialize(client, balance)
     @client = client #hardcoded for now
-    @balance = balance #hardcoded for now
+    @balance = balance #hardcoded for now, consider making it dynamic w/ method for market cap
     @stocks = []
    # @position_in_shares = []
    # @position_in_value = []
@@ -17,7 +17,7 @@ attr_accessor :client, :balance , :stocks #, :position_in_shares, :position_in_v
     portfolios << portfolio ##shovels portfolio into portfolios array in Client.rb
   end
 
-  def delete_portfolio(portfolio_name) #Do we need this functionality?
-    portfolios.delete(portfolio_name)
+  def to_s
+    "#{@client}, with an uninvested balance of #{@balance} and investments in the following stocks:"
   end
 end

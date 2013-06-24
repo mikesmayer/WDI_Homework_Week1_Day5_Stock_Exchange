@@ -6,12 +6,14 @@ class Stock_Ledger #Acts as a "shelter" for the clients; could be replaced by th
   end
 
   def add_client(client)
-    client_list << client
+    @client_list << client
   end
 
   def list_clients
     @client_list.each {|client| puts client}
   end
+
+  # total value of all clients?
 end
 
 class Client
@@ -32,7 +34,7 @@ class Client
   # end
 
   def to_s
-      "#{@name} had an uninvested cash balance of #{@balance} dollars and has #{@portfolios.count} investment portfolios."
+      "#{@name}, who has an uninvested cash balance of #{@balance} dollars and has #{@portfolios.count} investment portfolios."
   end
 end
 
