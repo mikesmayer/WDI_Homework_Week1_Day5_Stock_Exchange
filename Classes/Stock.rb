@@ -20,6 +20,9 @@ class Stock
     return YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade
   end
 
+  def to_s
+    "#{@num_of_shares} shares of #{@ticker}, currently priced at #{get_share_price} each"
+  end
 
 
 end
