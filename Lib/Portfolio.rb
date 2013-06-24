@@ -1,20 +1,11 @@
+require 'pry'
+
+require './Ledger'
+require_relative 'Client'
+require_relative 'Trades'
+require_relative 'Stock_Price'
+
 ## creates Portfolio class and two methods: add_portfolio and list_portfolios
-
-class Stock_Ledger #Acts as a "shelter" for the clients; could be replaced by the ability to list clients separately
-  attr_accessor :portfolio_roster
-
-  def initialize()
-    @portfolio_roster = {}
-  end
-
-  def add_portfolio(portfolio)
-    portfolio_roster << portfolio
-  end
-
-  def list_portfolios
-    @portfolio_roster.each {|portfolio| puts portfolio}
-  end
-end
 
 class Portfolios
 attr_accessor :portfolio

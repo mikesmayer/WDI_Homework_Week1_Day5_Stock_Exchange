@@ -1,26 +1,45 @@
 require 'pry'
 
-require_relative 'Client'
-require_relative 'Portfolio'
-require_relative 'Trades'
-require_relative 'Stock_Price'
+require './Ledger'
+require './Client'
+require './Portfolio'
+require './Trades'
+require './Stock_Price'
+
+#####SEED DATA#####
+
+ponzi_scheme = Ledger.new
+
+ponzi_scheme.add_client Client.new("Bob")
+ponzi_scheme.add_client Client.new("Mary")
+ponzi_scheme.add_client Client.new("Michael")
+ponzi_scheme.add_client Client.new("Jim")
+
+# sally = Client.new("Sally")
+# puts "A client arrives."
+# puts sally
+
+# puts "\nShe wants to see the client list."
+# ponzi_scheme.list_clients
+
+#####APPLICATION#####
 
 puts 'Welcome to WDI Stock Trading Terminal'
 
   puts 'Please type the number correspnding to the menu item you would like to selection: '
-  puts '1 - See a list of all clients'
-  puts '2 - Add a new client'
-  puts '3 - Create a new portfolio and starter balance'
+  puts 'A - See a list of all clients'
+  puts 'B - Add a new client'
+  puts 'C - Create a new portfolio and starter balance'
 
   manager_menu_selection = gets.chomp
 
 case manager_menu_selection
- when 1
-   Stock_Ledger.list_clients
- when 2
-  Stock_Ledger.add_client
- when 3
-  Stock_Ledger.add_portfolio
+ when "A"
+   ponzi_scheme.list_clients
+ when "B"
+  ponzi_scheme.add_client
+ when "C"
+  ponzi_scheme.add_portfolio
   else
     puts 'Thanks for coming—come again!'
 end

@@ -1,6 +1,11 @@
 require 'yahoofinance'
+require 'pry'
 
-class Stock
+require_relative 'Client'
+require_relative 'Portfolio'
+require_relative 'Trades'
+
+class Stock_Price
 
   attr_reader :ticker
   attr_accessor :total_price, :num_of_shares

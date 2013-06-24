@@ -1,4 +1,11 @@
-class Trade
+require 'pry'
+
+require './Ledger'
+require './Client'
+require './Portfolio'
+require './Stock_Price'
+
+class Trades
 
   attr_accessor :stock_symb, :num_of_shares, :cost_per_share, :portfolio_name
 
