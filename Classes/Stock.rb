@@ -20,6 +20,8 @@ class Stock
     return YahooFinance::get_quotes(YahooFinance::StandardQuote, @ticker)[@ticker].lastTrade
   end
 
+
+
 end
 
 # class Stock

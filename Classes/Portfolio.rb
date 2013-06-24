@@ -1,8 +1,6 @@
 class Portfolio
-
 attr_accessor :client, :balance , :stocks #, :position_in_shares, :position_in_value
-
-  def initialize(client, balance, stocks)
+  def initialize(client, balance)
     @client = client #hardcoded for now
     @balance = balance #hardcoded for now
     @stocks = []
@@ -23,4 +21,3 @@ attr_accessor :client, :balance , :stocks #, :position_in_shares, :position_in_v
     portfolios.delete(portfolio_name)
   end
 end
-

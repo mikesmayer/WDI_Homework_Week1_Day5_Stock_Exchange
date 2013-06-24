@@ -20,7 +20,7 @@ class Client
   def initialize(name, balance, portfolios) ## Don't understand the last variable
     @name = name
     @balance = balance
-    @portfolios = []
+    @portfolios = {}
     # @portfolios_total_value = update_total_portfolios_value ##??
   end
 
