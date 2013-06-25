@@ -1,4 +1,4 @@
-require_relative 'main'
+
 require_relative 'portfolio'
 require_relative 'trade'
 require_relative 'stock'
@@ -17,30 +17,19 @@ class Brokerage #Acts as a "shelter" for the clients; could be replaced by the a
   def list_clients
     @client_list.each {|client| puts client}
   end
-
-  # total value of all clients?
 end
 
 class Client
-  attr_accessor :name, :balance, :portfolios, :portfolios_total_value
+  attr_accessor :name, :balance, :portfolios
 
-  def initialize(name, balance) ## Don't understand the last variable
+  def initialize(name, balance)
     @name = name
     @balance = balance
     @portfolios = {}
-    # @portfolios_total_value = update_total_portfolios_value ##??
   end
-
-  # def update_total_portfolios_value
-  #     total_value = 0
-  #     portfolios.each do |portfolios|
-  #       total_value += portfolios.calculate_value
-  #     end
-  # end
 
   def to_s
       "#{@name}, who has an uninvested cash balance of #{@balance} dollars and has #{@portfolios.count} investment portfolios."
   end
 end
 
-## MOVED CLIENT INFORMATION TO THE MAIN.RB TAB

@@ -67,7 +67,7 @@ puts "For a total invested value of $#{bob_2_total.to_i}"
 puts "\nAnd here is an overview of Mary's portfolio:"
 puts mary.portfolios[:portfolio_1].to_s
 mary.portfolios[:portfolio_1].stocks.each {|stock| puts stock}
-mary_1_total = mary_s1.total_price + mary_s2.total_price + mary_s3.total_price + mary_s4.total_price
+mary_1_total = mary_s1.total_price + mary_s2.total_price + mary_s3.total_price + mary_s4.total_price #inefficient, make more efficient
 puts "For a total invested value of $#{mary_1_total.to_i}"
 
 
@@ -80,21 +80,21 @@ ponzi_scheme.add_client don
 puts "\nHere is the updated list of clients:"
 ponzi_scheme.list_clients
 
-puts "\nTell us a bit about the portfolio you would like to create"
+puts "\nDon, the new client, wants to purchase 10 shares of AAPL"
 
 don.portfolios[:portfolio_1] = Portfolio.new("Don", 10000)
-don.portfolios[:portfolio_1].stocks << Stock.new('AAPL',5)
-don.portfolios[:portfolio_1].stocks << Stock.new('IBM',5)
+
+don.portfolios[:portfolio_1].buy_stock('AAPL',10)
+
+puts "\nDon's portfolio now looks like:"
 
 don.portfolios[:portfolio_1].stocks.each {|stock| puts stock}
 
-puts "Okay, we can arrange that"
-puts ""
-don_s3 = Stock.new('AAPL',5)
+puts "\nDon decides to sell a portion of his AAPL stock"
+don.portfolios[:portfolio_1].sell_stock('AAPL',4)
 
+puts "\nDon's portfolio now looks like:"
 
-don_s3.buy_stock('AAPL',5,:portfolio_1,10000)
+don.portfolios[:portfolio_1].stocks.each {|stock| puts stock}
 
-
-#binding.pry
 
