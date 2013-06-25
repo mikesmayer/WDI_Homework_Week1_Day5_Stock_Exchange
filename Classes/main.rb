@@ -10,7 +10,7 @@ require_relative 'stock'
 
 puts `clear`
 
-ponzi_scheme = Stock_Ledger.new ##Creates "shelter" for clients to go into
+ponzi_scheme = Brokerage.new ##Creates "shelter" for clients to go into
 
 #Initial clients
 bob = Client.new("Bob", 50000)
@@ -22,39 +22,54 @@ ponzi_scheme.add_client mary
 
 #Initial clients portfolios
 bob.portfolios[:portfolio_1] = Portfolio.new("Bob's Industrial Portfolio", 10000)
-bob.portfolios[:portfolio_1].stocks << Stock.new('BA',14)
-bob.portfolios[:portfolio_1].stocks << Stock.new('FDX',15)
+bob_s1 = Stock.new('BA',34)
+bob_s2 = Stock.new('FDX',45)
+
+bob.portfolios[:portfolio_1].stocks << bob_s1
+bob.portfolios[:portfolio_1].stocks << bob_s2
+
 bob.portfolios[:portfolio_2] = Portfolio.new("Bob's Energy Stocks", 10000)
-bob.portfolios[:portfolio_2].stocks << Stock.new('XOM',40)
+bob_s3 = Stock.new('XOM',400)
+bob.portfolios[:portfolio_2].stocks << bob_s3
 
 mary.portfolios[:portfolio_1] = Portfolio.new("Mary's Financial Services Portfolio", 10000)
-mary.portfolios[:portfolio_1].stocks << Stock.new('UBS',1)
-mary.portfolios[:portfolio_1].stocks << Stock.new('GS',35)
-mary.portfolios[:portfolio_1].stocks << Stock.new('MS',55)
-mary.portfolios[:portfolio_1].stocks << Stock.new('WF',34)
+mary_s1 = Stock.new('UBS',1)
+mary_s2 = Stock.new('GS',45)
+mary_s3 = Stock.new('MS',55)
+mary_s4 = Stock.new('WF',34)
+
+mary.portfolios[:portfolio_1].stocks << mary_s1
+mary.portfolios[:portfolio_1].stocks << mary_s2
+mary.portfolios[:portfolio_1].stocks << mary_s3
+mary.portfolios[:portfolio_1].stocks << mary_s4
 
 #Begin story
 puts "$$$ Welcome to Ponzi Financial, where the money flows freely! $$$"
 
 puts "\nAs a prospective client, you may be interested in learning about our existing clients."
 puts "\nOur existing clients include:"
-puts ""
 ponzi_scheme.list_clients
 
-puts "\nHere at Ponzi Financial, ethics are a low priority."
-puts "\nTo that extent, here is an overview of Bob's portfolios:"
+puts "\nHere at Ponzi Financial, ethics are a low priority. To that extent, here is an overview of Bob's portfolios:"
 puts ""
 
 puts bob.portfolios[:portfolio_1]
 bob.portfolios[:portfolio_1].stocks.each {|stock| puts stock}
+bob_1_total = bob_s1.total_price + bob_s2.total_price
+puts "For a total invested value of $#{bob_1_total.to_i}"
 puts ""
 
 puts bob.portfolios[:portfolio_2].to_s
 bob.portfolios[:portfolio_2].stocks.each {|stock| puts stock}
+bob_2_total = bob_s3.total_price
+puts "For a total invested value of $#{bob_2_total.to_i}"
 
 puts "\nAnd here is an overview of Mary's portfolio:"
 puts mary.portfolios[:portfolio_1].to_s
 mary.portfolios[:portfolio_1].stocks.each {|stock| puts stock}
+mary_1_total = mary_s1.total_price + mary_s2.total_price + mary_s3.total_price + mary_s4.total_price
+puts "For a total invested value of $#{mary_1_total.to_i}"
+
 
 puts "\nAre you interested in becoming a customer?"
 puts "\nGreat, we will add your information to our client list"
@@ -75,7 +90,10 @@ don.portfolios[:portfolio_1].stocks.each {|stock| puts stock}
 
 puts "Okay, we can arrange that"
 puts ""
+don_s3 = Stock.new('AAPL',5)
 
+
+don_s3.buy_stock('AAPL',5,:portfolio_1,10000)
 
 
 #binding.pry

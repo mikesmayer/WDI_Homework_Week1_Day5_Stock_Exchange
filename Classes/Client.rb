@@ -1,4 +1,9 @@
-class Stock_Ledger #Acts as a "shelter" for the clients; could be replaced by the ability to list clients separately
+require_relative 'main'
+require_relative 'portfolio'
+require_relative 'trade'
+require_relative 'stock'
+
+class Brokerage #Acts as a "shelter" for the clients; could be replaced by the ability to list clients separately
   attr_accessor :client_list
 
   def initialize()

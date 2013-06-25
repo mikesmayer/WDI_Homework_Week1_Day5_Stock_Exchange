@@ -1,3 +1,8 @@
+require_relative 'client'
+require_relative 'main'
+require_relative 'trade'
+require_relative 'stock'
+
 class Portfolio
   attr_accessor :client, :balance , :stocks #, :position_in_shares, :position_in_value
   def initialize(client, balance)
